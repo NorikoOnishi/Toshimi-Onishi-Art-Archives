@@ -77,7 +77,12 @@ body {
 .small { max-width: 40%; }
 .medium { max-width: 70%; }
 .large { max-width: 90%; }
-
+.special {
+  max-width: 100%;
+  margin: 120px auto;
+  opacity: 0.85;
+}
+  
 /* ===== テキスト ===== */
 .text {
   text-align: center;
@@ -151,8 +156,8 @@ body {
 <!-- ===== ギャラリー ===== -->
 <div class="gallery">
 
-  <img src="001.jpg" class="large" onclick="openLightbox(this.src)">
-  <img src="002.jpg" class="large" onclick="openLightbox(this.src)">
+  <img src="001.jpg" class="special" onclick="openLightbox(this.src)">
+  <img src="002.jpg" class="special" onclick="openLightbox(this.src)">
   <img src="003.JPG" class="small" onclick="openLightbox(this.src)">
   <img src="004.JPG" class="small" onclick="openLightbox(this.src)">
   <img src="005.JPG" class="small" onclick="openLightbox(this.src)">
