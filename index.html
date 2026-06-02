@@ -23,7 +23,7 @@ body {
   max-height: 500px;
   object-fit: cover;
   display: block;
-  margin: 15px auto;
+  margin: 20px auto;
   filter: brightness(0.55);
 }
 
@@ -54,11 +54,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
 }
 
 .picture {
-  display: block;
   width: 400px;
   max-width: 90%;
   margin-bottom: 30px;
@@ -94,7 +92,6 @@ body {
 }
 
 .small { max-width: 40%; }
-.medium { max-width: 60%; }
 .large { max-width: 89%; }
 
 /* ===== テキスト ===== */
@@ -113,64 +110,128 @@ body {
   color: #aaa;
   line-height: 1.8;
 }
-</style>
 
+/* ===== 作品ページ（同一HTML内切り替え） ===== */
+.work-page {
+  display: none;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.work-page img {
+  width: 85%;
+  max-width: 1200px;
+  display: block;
+  margin: 40px auto;
+}
+
+.back {
+  display: inline-block;
+  margin-top: 40px;
+  color: #25a8a8;
+  cursor: pointer;
+}
+</style>
 </head>
 
 <body>
 
 <!-- ===== トップ ===== -->
-<div class="hero">
-  <img src="001.jpg" class="hero-bg">
+<div id="top">
 
-  <h1 class="hero-title">
-    Toshimi Onishi<br>
-    Art Archives
-  </h1>
+  <div class="hero">
+    <img src="001.jpg" class="hero-bg">
+
+    <h1 class="hero-title">
+      Toshimi Onishi<br>
+      Art Archives
+    </h1>
+  </div>
+
+  <div class="bio">
+    <div class="portrait">
+      <img src="父写真.JPG" class="picture">
+    </div>
+
+    <div class="name">大西　敏巳<br>Toshimi Onishi</div>
+
+    <div class="years">1940–2001　兵庫</div>
+
+    <div class="history">
+      1959　二紀展初入選<br>
+      1987　栗原賞受賞<br>
+      1993　黒田賞受賞<br>
+      2000　第54回二紀展 文部大臣奨励賞受賞
+    </div>
+  </div>
+
+  <div class="gallery">
+
+    <img src="001.jpg" class="large" onclick="openWork(1)">
+    <img src="002.jpg" class="large" onclick="openWork(2)">
+    <img src="003.JPG" class="small" onclick="openWork(3)">
+    <img src="004.JPG" class="small" onclick="openWork(4)">
+    <img src="005.JPG" class="small" onclick="openWork(5)">
+
+  </div>
+
+  <div class="text">
+    <div class="title">「刻」の記録</div>
+    <div class="desc">
+      父が遺した油彩と水彩の作品群<br>
+      時間と記憶のアーカイブ
+    </div>
+  </div>
+
 </div>
 
-<!-- ===== 略歴 ===== -->
-<div class="bio">
-  <div class="portrait">
-    <img src="父写真.JPG" class="picture">
-  </div>
+<!-- ===== 作品ページ（001〜005） ===== -->
 
-  <div class="name">
-    大西　敏巳<br>
-    Toshimi Onishi
-  </div>
-
-  <div class="years">
-    1940–2001　兵庫
-  </div>
-
-  <div class="history">
-    1959　二紀展初入選<br>
-    1987　栗原賞受賞<br>
-    1993　黒田賞受賞<br>
-    2000　第54回二紀展 文部大臣奨励賞受賞
-  </div>
+<div id="work1" class="work-page">
+  <img src="001.jpg">
+  <h2>作品001</h2>
+  <p>制作年：不明<br>油彩</p>
+  <p>作品説明を書く</p>
+  <div class="back" onclick="back()">← 戻る</div>
 </div>
 
-<!-- ===== ギャラリー（作品ページリンク） ===== -->
-<div class="gallery">
-
-  <a href="work001.html"><img src="001.jpg" class="large"></a>
-  <a href="work002.html"><img src="002.jpg" class="large"></a>
-  <a href="work003.html"><img src="003.JPG" class="small"></a>
-  <a href="work004.html"><img src="004.JPG" class="small"></a>
-  <a href="work005.html"><img src="005.JPG" class="small"></a>
-
+<div id="work2" class="work-page">
+  <img src="002.jpg">
+  <h2>作品002</h2>
+  <div class="back" onclick="back()">← 戻る</div>
 </div>
 
-<!-- ===== 説明 ===== -->
-<div class="text">
-  <div class="title">「刻」の記録</div>
-  <div class="desc">
-    父が遺した油彩と水彩の作品群<br>
-    時間と記憶のアーカイブ
-  </div>
+<div id="work3" class="work-page">
+  <img src="003.JPG">
+  <h2>作品003</h2>
+  <div class="back" onclick="back()">← 戻る</div>
 </div>
+
+<div id="work4" class="work-page">
+  <img src="004.JPG">
+  <h2>作品004</h2>
+  <div class="back" onclick="back()">← 戻る</div>
+</div>
+
+<div id="work5" class="work-page">
+  <img src="005.JPG">
+  <h2>作品005</h2>
+  <div class="back" onclick="back()">← 戻る</div>
+</div>
+
+<script>
+function openWork(n){
+  document.getElementById("top").style.display = "none";
+  document.getElementById("work"+n).style.display = "block";
+}
+
+function back(){
+  for(let i=1;i<=5;i++){
+    document.getElementById("work"+i).style.display = "none";
+  }
+  document.getElementById("top").style.display = "block";
+}
+</script>
 
 </body>
 </html>
