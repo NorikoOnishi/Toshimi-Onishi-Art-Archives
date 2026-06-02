@@ -40,8 +40,30 @@ body {
   letter-spacing: 3px;
   margin: 0;
   text-align: center;
+  
+/* 追加 */
+  opacity: 0;
+  filter: blur(12px);
+  animation: fadeInTitle 3s ease-out forwards;
 }
+  
+@keyframes fadeInTitle {
+  0% {
+    opacity: 0;
+    filter: blur(12px);
+  }
 
+  60% {
+    opacity: 0.7;
+    filter: blur(4px);
+  }
+
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+  
 /* ===== 略歴（追加修正） ===== */
 .bio .picture { 
   max-width: 50%;
