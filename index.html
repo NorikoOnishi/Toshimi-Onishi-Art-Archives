@@ -25,7 +25,6 @@ body {
   display: block;
 }
 
-/* タイトル重ね */
 .hero h1 {
   position: absolute;
   top: 50%;
@@ -37,16 +36,19 @@ body {
   margin: 0;
 }
 
-/* ===== ギャラリー ===== */
+/* ===== ギャラリー共通 ===== */
 .gallery img {
-  max-width: 80%;
-  height: auto;
   display: block;
-  margin: 100px auto;
+  margin: 80px auto;
   cursor: pointer;
 }
 
-/* ===== 作品説明 ===== */
+/* ===== サイズ分類（ここが今回のポイント） ===== */
+.small { max-width: 40%; }
+.medium { max-width: 70%; }
+.large { max-width: 90%; }
+
+/* ===== テキスト ===== */
 .text {
   text-align: center;
   margin: 80px 20px;
@@ -63,7 +65,7 @@ body {
   line-height: 1.8;
 }
 
-/* ===== 拡大表示（ライトボックス） ===== */
+/* ===== 拡大表示 ===== */
 .lightbox {
   display: none;
   position: fixed;
@@ -87,7 +89,7 @@ body {
 
 <body>
 
-<!-- ===== トップ1枚 ===== -->
+<!-- ===== トップ ===== -->
 <div class="hero">
   <img src="001.jpg">
   <h1>Toshimi Onishi Art Archives</h1>
@@ -96,15 +98,15 @@ body {
 <!-- ===== ギャラリー ===== -->
 <div class="gallery">
 
-  <img src="001.jpg" onclick="openLightbox(this.src)">
-  <img src="002.jpg" onclick="openLightbox(this.src)">
-  <img src="003.JPG" onclick="openLightbox(this.src)">
-  <img src="004.JPG" onclick="openLightbox(this.src)">
-  <img src="005.JPG" onclick="openLightbox(this.src)">
+  <img src="001.jpg" class="large" onclick="openLightbox(this.src)">
+  <img src="002.jpg" class="medium" onclick="openLightbox(this.src)">
+  <img src="003.JPG" class="small" onclick="openLightbox(this.src)">
+  <img src="004.JPG" class="medium" onclick="openLightbox(this.src)">
+  <img src="005.JPG" class="large" onclick="openLightbox(this.src)">
 
 </div>
 
-<!-- ===== 作品説明 ===== -->
+<!-- ===== 説明 ===== -->
 <div class="text">
   <div class="title">「刻」の記録</div>
   <div class="desc">
@@ -113,7 +115,7 @@ body {
   </div>
 </div>
 
-<!-- ===== ライトボックス ===== -->
+<!-- ===== 拡大表示 ===== -->
 <div class="lightbox" id="lightbox" onclick="this.style.display='none'">
   <img id="lightbox-img">
 </div>
