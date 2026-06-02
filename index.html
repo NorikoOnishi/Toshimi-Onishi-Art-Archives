@@ -7,33 +7,63 @@
 <style>
 /* ===== 全体 ===== */
 body {
-  background-color: #111;
+  background-color: #0b0b0b;
   color: #eee;
   margin: 0;
   font-family: serif;
 }
 
-/* ===== トップ（1枚ドン） ===== */
+/* ===== トップ ===== */
 .hero {
   position: relative;
   text-align: center;
 }
 
-.hero img {
-  width: 100%;
-  height: auto;
+/* ★ここ修正：hero-bg追加（今抜けてる） */
+.hero-bg {
+  width: 80%;
+  max-height: 500px;
+  object-fit: cover;
   display: block;
+  margin: 40px auto;
+  filter: brightness(0.6);
 }
 
-.hero h1 {
+/* ★ここ修正：hero-titleに統一 */
+.hero-title {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
+  transform: translate(-50%,-50%);
+  color: #30d5c8;
   font-size: 48px;
   letter-spacing: 3px;
   margin: 0;
+  text-align: center;
+}
+
+/* ===== 略歴（追加修正） ===== */
+.bio {
+  text-align: center;
+  padding: 80px 20px;
+  background-color: #0b0b0b;
+}
+
+.bio .name {
+  font-size: 34px;
+  margin-bottom: 20px;
+}
+
+.bio .years {
+  font-size: 18px;
+  color: #aaa;
+  margin-bottom: 40px;
+}
+
+.bio .history {
+  font-size: 16px;
+  line-height: 2.2;
+  color: #ddd;
 }
 
 /* ===== ギャラリー共通 ===== */
@@ -43,7 +73,7 @@ body {
   cursor: pointer;
 }
 
-/* ===== サイズ分類（ここが今回のポイント） ===== */
+/* ===== サイズ分類 ===== */
 .small { max-width: 40%; }
 .medium { max-width: 70%; }
 .large { max-width: 90%; }
@@ -97,6 +127,25 @@ body {
     Toshimi Onishi<br>
     Art Archives
   </h1>
+</div>
+
+<!-- ===== 略歴 ===== -->
+<div class="bio">
+  <div class="name">
+    大西　敏巳<br>
+    Toshimi Onishi
+  </div>
+
+  <div class="years">
+    1940–2001　兵庫
+  </div>
+
+  <div class="history">
+    1959　二紀展初入選<br>
+    1987　栗原賞受賞<br>
+    1993　黒田賞受賞<br>
+    2000　第54回二紀展 文部大臣奨励賞受賞
+  </div>
 </div>
 
 <!-- ===== ギャラリー ===== -->
