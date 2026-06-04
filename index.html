@@ -371,18 +371,54 @@ body {
   <div class="back" onclick="back()">← 戻る</div>
 </div>
   
-<script>
-function openWork(n){
-  document.getElementById("top").style.display = "none";
-  document.getElementById("work"+n).style.display = "block";
+document
+    .querySelectorAll(".work-page")
+    .forEach(page=>{
+      page.style.display="none";
+    });
+
+  document.getElementById("top")
+    .style.display="block";
 }
 
-function back(){
-  for(let i=1;i<=5;i++){
-    document.getElementById("work"+i).style.display = "none";
-  }
-  document.getElementById("top").style.display = "block";
-}
+/* カルーセル */
+
+const images = [
+  "001.jpg",
+  "kobe-niki.JPG",
+  "002.jpg",
+  "garage.JPG",
+  "009.JPG"
+];
+
+let current = 0;
+
+const carouselImg =
+  document.getElementById("carousel-image");
+
+document.querySelector(".next")
+.addEventListener("click",()=>{
+
+  current =
+    (current + 1) % images.length;
+
+  carouselImg.src =
+    images[current];
+
+});
+
+document.querySelector(".prev")
+.addEventListener("click",()=>{
+
+  current =
+    (current - 1 + images.length)
+    % images.length;
+
+  carouselImg.src =
+    images[current];
+
+});
+
 </script>
   
   const images = [
