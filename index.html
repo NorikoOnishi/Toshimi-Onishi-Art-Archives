@@ -84,17 +84,23 @@ body {
   color: #ddd;
 }
 
-/* ===== カルーセル ===== */
+/* ===== カルーセル ===== */  
 .featured-carousel{
   text-align:center;
-  padding:100px 20px;
+  padding:80px 20px;
 }
 
 .featured-carousel h2{
   color:#25a8a8;
   margin-bottom:40px;
   letter-spacing:2px;
-  font-weight: normal;
+}
+
+.carousel{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
 }
 
 .carousel{
@@ -102,36 +108,31 @@ body {
   display:flex;
   justify-content:center;
   align-items:center;
-  gap:30px;
 }
 
-.carousel img{
-  width:100%;
-  max-width:780px;
-  height:520px;
-  object-fit:contain;
-  display:block;
-  margin:0 auto;
-  background:#0b0b0b;
-}
 
-/* アニメ */
-#carousel-image{
-  opacity:0;
-  transform: translateX(60px);
-  filter: blur(12px);
+  
+.carousel img {
+  width: 80%;
+  max-width: 900px;
+  max-height: 500px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
 }
-
-@keyframes museumSlide {
+  
+#carousel-image {
+  filter: blur(10px);
+}
+  
+@keyframes fadeArtwork {
   0% {
     opacity: 0;
-    transform: translateX(60px);
-    filter: blur(12px);
+    transform: translateX(50px);
+    transform: translateX(25px);
+    filter: blur(10px);
   }
-  60% {
-    opacity: 0.6;
-    filter: blur(5px);
-  }
+
   100% {
     opacity: 1;
     transform: translateX(0);
@@ -139,39 +140,32 @@ body {
   }
 }
 
-.fade{
-  animation: museumSlide 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-.carousel button{
-  background:none;
-  border:none;
-  color:#25a8a8;
-  font-size:32px;
-  cursor:pointer;
-  opacity:0.6;
-}
-
-.carousel button:hover{
-  opacity:1;
+.fade {
+  animation: fadeArtwork 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: fadeArtwork 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 /* ===== ギャラリー ===== */
 .gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 100px 80px;
+
+  gap: 100px 80px;   /* 縦 横 の間隔 */
+
   width: 60%;
   max-width: 1200px;
+
   margin: 120px auto;
 }
 
 .gallery img {
-  width: 65%;
+  width: 65%;       /* マスいっぱいにしない */
   margin: 0 auto;
+
   cursor: pointer;
   display: block;
   object-fit: contain;
+
   transition: all 0.4s ease;
 }
 
@@ -180,7 +174,32 @@ body {
   opacity: 0.9;
 }
 
-/* ===== 作品ページ ===== */
+.small,
+.medium,
+.large,
+.special {
+  width: 100%;
+  max-width: none;
+}
+
+/* ===== テキスト ===== */
+.text {
+  text-align: center;
+  margin: 80px 20px;
+}
+
+.text .title {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.text .desc {
+  font-size: 18px;
+  color: #aaa;
+  line-height: 1.8;
+}
+
+/* ===== 作品ページ（同一HTML内切り替え） ===== */
 .work-page {
   display: none;
   text-align: center;
@@ -201,7 +220,7 @@ body {
   cursor: pointer;
 }
 
-/* ===== 問い合わせ ===== */
+/* =====問い合わせ===== */
 .contact {
   background-color: #0b0b0b;
   text-align: center;
@@ -247,12 +266,41 @@ body {
   opacity: 0.8;
 }
 
-/* ありがとう画面 */
-#thanks {
-  display:none;
-  text-align:center;
-  padding:80px 20px;
+  /* ===== 追加：全体中央安定化 ===== */
+.hero,
+.featured-carousel,
+.gallery,
+.text,
+.bio {
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
+
+/* 画像のはみ出し防止 */
+img {
+  max-width: 100%;
+}
+
+/* ギャラリーのズレ補正 */
+.gallery {
+  text-align: center;
+}
+
+/* ボタン位置安定 */
+.carousel {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* hero画像のズレ防止 */
+.hero-bg {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 </style>
 </head>
 
@@ -263,6 +311,7 @@ body {
 
   <div class="hero">
     <img src="001.jpg" class="hero-bg">
+
     <h1 class="hero-title">
       Toshimi Onishi<br>
       Art Archives
@@ -284,55 +333,166 @@ body {
       1993　黒田賞受賞<br>
       2000　第54回二紀展 文部大臣奨励賞受賞
     </div>
-  </div>
+  </div> 
 
-  <div class="featured-carousel">
-    <h2>時間と記憶のアーカイブ</h2>
-    <div class="carousel">
-      <button class="prev">❮</button>
-      <img id="carousel-image">
-      <button class="next">❯</button>
+ <div class="text">
+    <div class="title">「刻」と「風景」の記録</div>
+    <div class="desc">
+      父が遺した油彩と水彩の作品群
     </div>
-  </div>
+ </div>
 
-  <div class="gallery">
-    <img src="001.jpg" onclick="openWork(1)">
-    <img src="002.jpg" onclick="openWork(2)">
-    <img src="003.JPG" onclick="openWork(3)">
-    <img src="004.JPG" onclick="openWork(4)">
-    <img src="005.JPG" onclick="openWork(5)">
-    <img src="006.JPG" onclick="openWork(6)">
-    <img src="007.JPG" onclick="openWork(7)">
-    <img src="008.JPG" onclick="openWork(8)">
-    <img src="009.jpg" onclick="openWork(9)">
-    <img src="200.JPG" onclick="openWork(200)">
+<div class="featured-carousel">
+
+  <h2>時間と記憶のアーカイブ</h2>
+
+  <div class="carousel">
+
+    <button class="prev">❮</button>
+
+    <img id="carousel-image" src="001.jpg">
+
+    <button class="next">❯</button>
+
   </div>
 
 </div>
 
-<!-- ===== 問い合わせ ===== -->
+  <div class="gallery">
+
+    <img src="001.jpg" class="large" onclick="openWork(1)">
+    <img src="002.jpg" class="large" onclick="openWork(2)">
+    <img src="003.JPG" class="small" onclick="openWork(3)">
+    <img src="004.JPG" class="small" onclick="openWork(4)">
+    <img src="005.JPG" class="small" onclick="openWork(5)">
+    <img src="006.JPG" class="small" onclick="openWork(6)">
+    <img src="007.JPG" class="small" onclick="openWork(7)">
+    <img src="008.JPG" class="small" onclick="openWork(8)">
+    <img src="009.jpg" class="large" onclick="openWork(9)">
+    <img src="200.JPG" class="small" onclick="openWork(200)">
+
+  </div>
+
+</div>
+
+<!-- ===== 作品ページ（001〜005） ===== -->
+
+<div id="work1" class="work-page">
+  <img src="001.jpg">
+  <h2>作品001</h2>
+  <p>制作年：不明<br>油彩</p>
+  <p>作品説明を書く</p>
+  <div class="back" onclick="back()">← 戻る</div>
+</div>
+
+<div id="work2" class="work-page">
+  <img src="002.jpg">
+  <h2>作品002</h2>
+  <p>制作年：不明<br>油彩</p>
+  <p>作品説明を書く</p>
+  <div class="back" onclick="back()">← 戻る</div>
+</div>
+
+<div id="work3" class="work-page">
+  <img src="003.JPG">
+  <h2>作品003</h2>
+  <p>制作年：不明<br>油彩</p>
+  <p>作品説明を書く</p>
+  <div class="back" onclick="back()">← 戻る</div>
+</div>
+
+<div id="work4" class="work-page">
+  <img src="004.JPG">
+  <h2>作品004</h2>
+  <p>制作年：不明<br>油彩</p>
+  <p>作品説明を書く</p>
+  <div class="back" onclick="back()">← 戻る</div>
+</div>
+
+<div id="work5" class="work-page">
+  <img src="005.JPG">
+  <h2>作品005</h2>
+  <p>制作年：不明<br>油彩</p>
+  <p>作品説明を書く</p>
+  <div class="back" onclick="back()">← 戻る</div>
+</div>
+
+  <div id="work6" class="work-page">
+  <img src="006.JPG">
+  <h2>作品006</h2>
+  <p>制作年：不明<br>油彩</p>
+  <p>作品説明を書く</p>
+  <div class="back" onclick="back()">← 戻る</div>
+</div>
+
+  <div id="work7" class="work-page">
+  <img src="007.JPG">
+  <h2>作品007</h2>
+  <p>制作年：不明<br>油彩</p>
+  <p>作品説明を書く</p>
+  <div class="back" onclick="back()">← 戻る</div>
+</div>
+
+  <div id="work8" class="work-page">
+  <img src="008.JPG">
+  <h2>作品008</h2>
+  <p>制作年：不明<br>油彩</p>
+  <p>作品説明を書く</p>
+  <div class="back" onclick="back()">← 戻る</div>
+</div>
+
+  <div id="work9" class="work-page">
+  <img src="009.jpg">
+  <h2>作品009</h2>
+  <p>制作年：不明<br>油彩</p>
+  <p>作品説明を書く</p>
+  <div class="back" onclick="back()">← 戻る</div>
+</div>
+
+  <div id="work200" class="work-page">
+  <img src="200.JPG">
+  <h2>作品200</h2>
+  <p>制作年：不明<br>油彩</p>
+  <p>作品説明を書く</p>
+  <div class="back" onclick="back()">← 戻る</div>
+</div>
+
+<!-- ===== お問い合わせ ===== -->
 <div class="contact">
 
   <div class="contact-title">Contact</div>
 
   <form action="mailto:yourmail@example.com" method="post" enctype="text/plain">
+
     <input type="text" name="name" placeholder="お名前" required>
+
     <input type="email" name="email" placeholder="メールアドレス" required>
+
     <textarea name="message" rows="6" placeholder="メッセージ内容" required></textarea>
+
     <button type="submit">送信</button>
+
   </form>
 
-  <div id="thanks">
-    <h2 style="color:#25a8a8;">送信ありがとうございます</h2>
-    <button onclick="backToForm()">戻る</button>
-  </div>
-
 </div>
+  <script>
 
-<script>
+function openWork(n){
+  document.getElementById("top").style.display = "none";
+  document.getElementById("work"+n).style.display = "block";
+}
+
+function back(){
+  document.querySelectorAll(".work-page").forEach(page=>{
+    page.style.display = "none";
+  });
+  document.getElementById("top").style.display = "block";
+}
+
+/* ===== カルーセル ===== */
+
 window.addEventListener("DOMContentLoaded", () => {
 
-  /* ===== カルーセル ===== */
   const images = [
     "001.jpg",
     "kobe-niki.JPG",
@@ -347,11 +507,19 @@ window.addEventListener("DOMContentLoaded", () => {
   const next = document.querySelector(".next");
   const prev = document.querySelector(".prev");
 
+  if(!img || !next || !prev) return;
+
   function showImage() {
+
     img.classList.remove("fade");
+
     void img.offsetWidth;
+
     img.src = images[current];
-    requestAnimationFrame(() => img.classList.add("fade"));
+
+    requestAnimationFrame(() => {
+      img.classList.add("fade");
+    });
   }
 
   next.addEventListener("click", () => {
@@ -364,30 +532,22 @@ window.addEventListener("DOMContentLoaded", () => {
     showImage();
   });
 
-  showImage();
+  showImage(); // ←これ重要（初期表示）
 
   setInterval(() => {
     current = (current + 1) % images.length;
     showImage();
-  }, 9000);
-
-  /* ===== フォーム ===== */
-  const form = document.querySelector(".contact form");
-  const thanks = document.getElementById("thanks");
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    form.style.display = "none";
-    thanks.style.display = "block";
-  });
-
-  window.backToForm = function(){
-    form.style.display = "block";
-    thanks.style.display = "none";
-  };
-
+  }, 8000);
 });
+
 </script>
+
+<!-- ===== フッター（著作権） ===== -->
+<footer class="footer">
+  <div class="copyright">
+    © Toshimi Onishi Art Archives. All rights reserved.
+  </div>
+</footer>
 
 </body>
 </html>
