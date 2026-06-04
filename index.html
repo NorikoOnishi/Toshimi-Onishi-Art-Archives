@@ -160,28 +160,39 @@ body {
 .gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  width: 90%;
-  max-width: 1400px;
-  margin: 80px auto;
+
+  gap: 90px 70px;   /* 縦 横 の間隔 */
+
+  width: 70%;
+  max-width: 1200px;
+
+  margin: 120px auto;
 }
 
 .gallery img {
-  width: 100%;
-  max-width: none;
-  margin: 0;
+  width: 80%;       /* マスいっぱいにしない */
+  margin: 0 auto;
+
   cursor: pointer;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
+
+  transition: all 0.4s ease;
 }
-  
+
+.gallery img:hover {
+  transform: scale(1.03);
+  opacity: 0.9;
+}
+
 .small,
 .medium,
 .large,
 .special {
-  max-width: none;
   width: 100%;
+  max-width: none;
 }
+  
 /* ===== テキスト ===== */
 .text {
   text-align: center;
