@@ -397,6 +397,53 @@ body {
   </form>
 
 </div>
+  <script>
+
+function openWork(n){
+  document.getElementById("top").style.display = "none";
+  document.getElementById("work"+n).style.display = "block";
+}
+
+function back(){
+  document.querySelectorAll(".work-page").forEach(page=>{
+    page.style.display = "none";
+  });
+  document.getElementById("top").style.display = "block";
+}
+
+/* ===== カルーセル ===== */
+
+window.addEventListener("DOMContentLoaded", () => {
+
+  const images = [
+    "001.jpg",
+    "kobe-niki.JPG",
+    "002.jpg",
+    "garage.JPG",
+    "009.jpg"
+  ];
+
+  let current = 0;
+
+  const img = document.getElementById("carousel-image");
+  const next = document.querySelector(".next");
+  const prev = document.querySelector(".prev");
+
+  if(!img || !next || !prev) return;
+
+  next.addEventListener("click", () => {
+    current = (current + 1) % images.length;
+    img.src = images[current];
+  });
+
+  prev.addEventListener("click", () => {
+    current = (current - 1 + images.length) % images.length;
+    img.src = images[current];
+  });
+
+});
+
+</script>
   
 <!-- ===== フッター（著作権） ===== -->
 <footer class="footer">
