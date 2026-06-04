@@ -84,28 +84,59 @@ body {
   color: #ddd;
 }
 
-#carousel-image{
-  opacity:0;
-  transform: translateX(90px);
-  filter: blur(14px);
+/* ===== カルーセル（完全安定版） ===== */
+
+.featured-carousel{
+  text-align:center;
+  padding:100px 20px;
 }
 
-/* 横から“流れ込む”を強くする */
+.featured-carousel h2{
+  color:#25a8a8;
+  margin-bottom:40px;
+  letter-spacing:2px;
+  font-weight: normal;
+}
+
+.carousel{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:30px;
+}
+
+/* ← ここが超重要：枠を固定する */
+.carousel img{
+  width:100%;
+  max-width:780px;
+  height:520px;        /* ★これで暴走防止 */
+
+  object-fit:contain;  /* 絵を切らない */
+  background:#0b0b0b;  /* 空白を馴染ませる */
+
+  display:block;
+  margin:0 auto;
+}
+
+/* 初期状態 */
+#carousel-image{
+  opacity:0;
+  transform: translateX(40px);
+  filter: blur(12px);
+}
+
+/* アニメ */
 @keyframes museumSlide {
   0% {
     opacity: 0;
-    transform: translateX(90px);
-    filter: blur(14px);
+    transform: translateX(60px);
+    filter: blur(12px);
   }
 
-  30% {
-    opacity: 0.4;
-    filter: blur(8px);
-  }
-
-  70% {
-    opacity: 0.85;
-    filter: blur(2px);
+  60% {
+    opacity: 0.6;
+    filter: blur(5px);
   }
 
   100% {
@@ -116,7 +147,22 @@ body {
 }
 
 .fade{
-  animation: museumSlide 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: museumSlide 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ボタン */
+.carousel button{
+  background:none;
+  border:none;
+  color:#25a8a8;
+  font-size:32px;
+  cursor:pointer;
+  opacity:0.6;
+  transition:0.3s;
+}
+
+.carousel button:hover{
+  opacity:1;
 }
   
 /* ===== ギャラリー ===== */
