@@ -447,8 +447,27 @@ img {
     <button type="submit">送信</button>
 
   </form>
+<!-- ありがとう画面 -->
+<div id="thanks" style="display:none; text-align:center; padding:80px 20px;">
+  <h2 style="color:#25a8a8;">送信ありがとうございます</h2>
+  <p style="color:#aaa; margin-top:20px;">
+    メッセージは正常に送信されました。<br>
+    確認のうえご返信いたします。
+  </p>
 
+  <button onclick="backToForm()" style="
+    margin-top:40px;
+    background:#25a8a8;
+    border:none;
+    padding:12px 30px;
+    cursor:pointer;
+    color:#000;
+  ">
+    戻る
+  </button>
+  </div>
 </div>
+  
   <script>
 
 function openWork(n){
