@@ -537,6 +537,20 @@ window.addEventListener("DOMContentLoaded", () => {
 });
     
 </script>
+const form = document.getElementById("contact-form");
+const thanks = document.getElementById("thanks");
+
+form.addEventListener("submit", function(e){
+  e.preventDefault(); // 送信止める（画面切替用）
+
+  form.style.display = "none";
+  thanks.style.display = "block";
+});
+
+function backToForm(){
+  form.style.display = "block";
+  thanks.style.display = "none";
+}
   
 <!-- ===== フッター（著作権） ===== -->
 <footer class="footer">
