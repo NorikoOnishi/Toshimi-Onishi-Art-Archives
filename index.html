@@ -84,59 +84,28 @@ body {
   color: #ddd;
 }
 
-/* ===== カルーセル ===== */  
-/* ===== カルーセル（美術館トーン） ===== */
-.featured-carousel{
-  text-align:center;
-  padding:100px 20px;
-}
-
-.featured-carousel h2{
-  color:#25a8a8;
-  margin-bottom:40px;
-  letter-spacing:2px;
-  font-weight: normal;
-}
-
-.carousel{
-  width:100%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:30px;
-}
-
-/* 画像の安定枠 */
-.carousel img{
-  width:100%;
-  max-width:780px;
-  height:520px;
-
-  object-fit:contain;
-  display:block;
-  margin:0 auto;
-
-  background: #0b0b0b;
-}
-
-/* 初期状態（静かな余白） */
 #carousel-image{
   opacity:0;
-  transform: translateX(18px);
-  filter: blur(10px);
+  transform: translateX(90px);
+  filter: blur(14px);
 }
 
-/* “静かに入ってくる”動き */
+/* 横から“流れ込む”を強くする */
 @keyframes museumSlide {
   0% {
     opacity: 0;
-    transform: translateX(18px);
-    filter: blur(10px);
+    transform: translateX(90px);
+    filter: blur(14px);
   }
 
-  50% {
-    opacity: 0.6;
-    filter: blur(4px);
+  30% {
+    opacity: 0.4;
+    filter: blur(8px);
+  }
+
+  70% {
+    opacity: 0.85;
+    filter: blur(2px);
   }
 
   100% {
@@ -147,23 +116,9 @@ body {
 }
 
 .fade{
-  animation: museumSlide 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: museumSlide 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
-
-/* ボタン（ミニマル化） */
-.carousel button{
-  background:none;
-  border:none;
-  color:#25a8a8;
-  font-size:32px;
-  cursor:pointer;
-  opacity:0.6;
-  transition:0.3s;
-}
-
-.carousel button:hover{
-  opacity:1;
-}
+  
 /* ===== ギャラリー ===== */
 .gallery {
   display: grid;
