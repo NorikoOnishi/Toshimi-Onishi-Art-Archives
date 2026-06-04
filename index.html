@@ -346,7 +346,26 @@ body {
 <script>
 window.addEventListener("DOMContentLoaded", () => {
 
-  /* ===== カルーセル ===== */
+  /* =========================
+     作品ページ切り替え
+  ========================= */
+  window.openWork = function(n){
+    document.getElementById("top").style.display = "none";
+    const page = document.getElementById("work"+n);
+    if(page) page.style.display = "block";
+  };
+
+  window.back = function(){
+    document.querySelectorAll(".work-page").forEach(page=>{
+      page.style.display = "none";
+    });
+    document.getElementById("top").style.display = "block";
+  };
+
+
+  /* =========================
+     カルーセル（完全復旧）
+  ========================= */
   const images = [
     "001.jpg",
     "kobe-niki.JPG",
@@ -361,63 +380,57 @@ window.addEventListener("DOMContentLoaded", () => {
   const next = document.querySelector(".next");
   const prev = document.querySelector(".prev");
 
-  function showImage(){
-    if(!img) return;
+  if (img && next && prev) {
 
-    img.classList.remove("fade");
-    void img.offsetWidth;
+    function showImage() {
+      img.classList.remove("fade");
+      void img.offsetWidth;
 
-    img.src = images[current];
+      img.src = images[current];
 
-    requestAnimationFrame(()=>{
-      img.classList.add("fade");
-    });
-  }
+      requestAnimationFrame(() => {
+        img.classList.add("fade");
+      });
+    }
 
-  if(img && next && prev){
-
-    next.onclick = () => {
+    next.addEventListener("click", () => {
       current = (current + 1) % images.length;
       showImage();
-    };
+    });
 
-    prev.onclick = () => {
+    prev.addEventListener("click", () => {
       current = (current - 1 + images.length) % images.length;
       showImage();
-    };
+    });
 
     showImage();
 
-    setInterval(()=>{
+    setInterval(() => {
       current = (current + 1) % images.length;
       showImage();
     }, 9000);
   }
 
-  /* ===== 作品ページ ===== */
-  window.openWork = function(n){
-    document.getElementById("top").style.display="none";
-    document.getElementById("work"+n).style.display="block";
-  };
 
-  window.back = function(){
-    document.querySelectorAll(".work-page").forEach(p=>p.style.display="none");
-    document.getElementById("top").style.display="block";
-  };
+  /* =========================
+     お問い合わせ（ありがとう画面）
+  ========================= */
 
-  /* ===== フォーム ===== */
-  const form = document.querySelector("form");
+  const form = document.querySelector(".contact form");
   const thanks = document.getElementById("thanks");
 
-  form.addEventListener("submit",(e)=>{
-    e.preventDefault();
-    form.style.display="none";
-    thanks.style.display="block";
-  });
+  if (form && thanks) {
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+      form.style.display = "none";
+      thanks.style.display = "block";
+    });
+  }
 
   window.backToForm = function(){
-    form.style.display="block";
-    thanks.style.display="none";
+    if (!form || !thanks) return;
+    form.style.display = "block";
+    thanks.style.display = "none";
   };
 
 });
@@ -425,6 +438,3 @@ window.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
-「スクロールでフェード演出」
-
-ここまで来てるので、かなりいいとこまで仕上がってる。
