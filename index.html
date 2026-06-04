@@ -109,22 +109,36 @@ body {
   justify-content:center;
   align-items:center;
 }
-
-
+  
+.carousel img {
+  width: 80%;
+  max-width: 900px;
+  max-height: 500px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+  
+#carousel-image {
+  filter: blur(10px);
+}
+  
 @keyframes fadeArtwork {
   0% {
     opacity: 0;
-    transform: translateX(50px);
+    transform: translateX(25px);
+    filter: blur(10px);
   }
 
   100% {
     opacity: 1;
     transform: translateX(0);
+    filter: blur(0);
   }
 }
 
 .fade {
-  animation: fadeArtwork 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: fadeArtwork 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
   
 /* ===== ギャラリー ===== */
