@@ -136,24 +136,17 @@ body {
 @keyframes fadeArtwork {
   0% {
     opacity: 0;
-    filter: blur(15px);
-    transform: scale(1.03);
-  }
-
-  60% {
-    opacity: 0.7;
-    filter: blur(5px);
+    transform: translateX(50px);
   }
 
   100% {
     opacity: 1;
-    filter: blur(0);
-    transform: scale(1);
+    transform: translateX(0);
   }
-}  
+}
 
-  .fade {
-  animation: fadeArtwork 2.5s ease-out;
+.fade {
+  animation: fadeArtwork 2.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
   
 /* ===== ギャラリー ===== */
@@ -548,7 +541,7 @@ prev.addEventListener("click", () => {
 setInterval(() => {
   current = (current + 1) % images.length;
   showImage();
-}, 4000);
+}, 8000);
 });
 
 </script>
