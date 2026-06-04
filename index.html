@@ -440,7 +440,24 @@ window.addEventListener("DOMContentLoaded", () => {
     current = (current - 1 + images.length) % images.length;
     img.src = images[current];
   });
+let timer = setInterval(() => {
+  current = (current + 1) % images.length;
+  img.src = images[current];
+}, 8000);
 
+const carousel = document.querySelector(".carousel");
+
+carousel.addEventListener("mouseenter", () => {
+  clearInterval(timer);
+});
+
+carousel.addEventListener("mouseleave", () => {
+  timer = setInterval(() => {
+    current = (current + 1) % images.length;
+    img.src = images[current];
+  }, 8000);
+  
+});
 });
 
 </script>
