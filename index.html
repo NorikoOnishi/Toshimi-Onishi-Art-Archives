@@ -84,6 +84,40 @@ body {
   color: #ddd;
 }
 
+/* ===== カルーセル ===== */  
+.featured-carousel{
+  text-align:center;
+  padding:80px 20px;
+}
+
+.featured-carousel h2{
+  color:#25a8a8;
+  margin-bottom:40px;
+  letter-spacing:2px;
+}
+
+.carousel{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
+}
+
+.carousel img{
+  width:70%;
+  max-width:900px;
+  max-height:500px;
+  object-fit:contain;
+}
+
+.carousel button{
+  background:none;
+  border:none;
+  color:#25a8a8;
+  font-size:40px;
+  cursor:pointer;
+}
+  
 /* ===== ギャラリー ===== */
 .gallery img {
   display: block;
@@ -350,6 +384,40 @@ function back(){
   document.getElementById("top").style.display = "block";
 }
 </script>
+  
+  const images = [
+  "001.JPG",
+  "kobe-niki.JPG",
+  "002.JPG",
+  "garage.JPG",
+  "009.JPG"
+];
+
+let current = 0;
+
+const carouselImg =
+  document.getElementById("carousel-image");
+
+document.querySelector(".next")
+.addEventListener("click", () => {
+
+  current =
+    (current + 1) % images.length;
+
+  carouselImg.src =
+    images[current];
+});
+
+document.querySelector(".prev")
+.addEventListener("click", () => {
+
+  current =
+    (current - 1 + images.length)
+    % images.length;
+
+  carouselImg.src =
+    images[current];
+});
   
 <!-- ===== お問い合わせ ===== -->
 <div class="contact">
