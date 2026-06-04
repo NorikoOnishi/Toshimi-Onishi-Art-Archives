@@ -128,17 +128,31 @@ body {
 }
   
 /* ===== ギャラリー ===== */
-.gallery img {
-  display: block;
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  width: 90%;
+  max-width: 1400px;
   margin: 80px auto;
-  cursor: pointer;
 }
 
-.small { max-width: 30%; }
-.medium { max-width: 50%; }
-.large { max-width: 89%; }
-.special { max-width: 92%; }
-
+.gallery img {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  cursor: pointer;
+  display: block;
+  object-fit: cover;
+}
+  
+.small,
+.medium,
+.large,
+.special {
+  max-width: none;
+  width: 100%;
+}
 /* ===== テキスト ===== */
 .text {
   text-align: center;
