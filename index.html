@@ -508,8 +508,10 @@ window.addEventListener("DOMContentLoaded", () => {
   const prev = document.querySelector(".prev");
 
   if(!img || !next || !prev) return;
-
- function showImage() {
+  
+　img.classList.add("fade");
+  
+  function showImage() {
 
   img.classList.remove("fade");
 
