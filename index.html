@@ -481,61 +481,10 @@ img {
   <div class="back" onclick="back()">← 戻る</div>
 </div>
     
-<!-- ===== お問い合わせ ===== -->
-<div class="contact">
-
-  <div class="contact-title">Contact</div>
-
-  <form action="mailto:yourmail@example.com" method="post" enctype="text/plain">
-
-    <input type="text" name="name" placeholder="お名前" required>
-
-    <input type="email" name="email" placeholder="メールアドレス" required>
-
-    <textarea name="message" rows="6" placeholder="メッセージ内容" required></textarea>
-
-    <button type="submit">送信</button>
-
-  </form>
-<!-- ありがとう画面 -->
-<div id="thanks" style="display:none; text-align:center; padding:80px 20px;">
-  <h2 style="color:#25a8a8;">送信ありがとうございます</h2>
-  <p style="color:#aaa; margin-top:20px;">
-    メッセージは正常に送信されました。<br>
-    確認のうえご返信いたします。
-  </p>
-
-  <button onclick="backToForm()" style="
-    margin-top:40px;
-    background:#25a8a8;
-    border:none;
-    padding:12px 30px;
-    cursor:pointer;
-    color:#000;
-  ">
-    戻る
-  </button>
-  </div>
-</div>
-  
-  <script>
-
-function openWork(n){
-  document.getElementById("top").style.display = "none";
-  document.getElementById("work"+n).style.display = "block";
-}
-
-function back(){
-  document.querySelectorAll(".work-page").forEach(page=>{
-    page.style.display = "none";
-  });
-  document.getElementById("top").style.display = "block";
-}
-
-/* ===== カルーセル ===== */
-
+<script>
 window.addEventListener("DOMContentLoaded", () => {
 
+  /* ===== カルーセル ===== */
   const images = [
     "001.jpg",
     "kobe-niki.JPG",
@@ -552,62 +501,59 @@ window.addEventListener("DOMContentLoaded", () => {
 
   function showImage() {
 
-    // アニメリセット
+    if (!img) return;
+
     img.classList.remove("fade");
     void img.offsetWidth;
 
-    // 画像変更
     img.src = images[current];
 
-    // アニメ再付与（ここが重要）
     requestAnimationFrame(() => {
       img.classList.add("fade");
     });
   }
 
-  next.addEventListener("click", () => {
-    current = (current + 1) % images.length;
-    showImage();
-  });
+  if (next && prev && img) {
 
-  prev.addEventListener("click", () => {
-    current = (current - 1 + images.length) % images.length;
-    showImage();
-  });
+    next.addEventListener("click", () => {
+      current = (current + 1) % images.length;
+      showImage();
+    });
 
-  // 初期表示
-  img.src = images[current];
-  requestAnimationFrame(() => img.classList.add("fade"));
+    prev.addEventListener("click", () => {
+      current = (current - 1 + images.length) % images.length;
+      showImage();
+    });
 
-  // 自動再生（少し長めで“展示感”）
-  setInterval(() => {
-    current = (current + 1) % images.length;
+    // 初期表示
     showImage();
-  }, 9000);
+
+    // 自動再生
+    setInterval(() => {
+      current = (current + 1) % images.length;
+      showImage();
+    }, 9000);
+  }
+
+
+  /* ===== フォーム（ありがとう画面） ===== */
+  const form = document.querySelector("form");
+  const thanks = document.getElementById("thanks");
+
+  if (form && thanks) {
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+
+      form.style.display = "none";
+      thanks.style.display = "block";
+    });
+  }
+
+  window.backToForm = function(){
+    if (!form || !thanks) return;
+    form.style.display = "block";
+    thanks.style.display = "none";
+  };
+
 });
-    
 </script>
-const form = document.getElementById("contact-form");
-const thanks = document.getElementById("thanks");
-
-form.addEventListener("submit", function(e){
-  e.preventDefault(); // 送信止める（画面切替用）
-
-  form.style.display = "none";
-  thanks.style.display = "block";
-});
-
-function backToForm(){
-  form.style.display = "block";
-  thanks.style.display = "none";
-}
-  
-<!-- ===== フッター（著作権） ===== -->
-<footer class="footer">
-  <div class="copyright">
-    © Toshimi Onishi Art Archives. All rights reserved.
-  </div>
-</footer>
-  
-</body>
-</html>
