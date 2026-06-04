@@ -463,15 +463,27 @@ window.addEventListener("DOMContentLoaded", () => {
 
   if(!img || !next || !prev) return;
 
-  next.addEventListener("click", () => {
-    current = (current + 1) % images.length;
-    img.src = images[current];
-  });
+  function showImage() {
+  img.src = images[current];
+}
 
-  prev.addEventListener("click", () => {
-    current = (current - 1 + images.length) % images.length;
-    img.src = images[current];
-  });
+/* 手動 */
+next.addEventListener("click", () => {
+  current = (current + 1) % images.length;
+  showImage();
+});
+
+prev.addEventListener("click", () => {
+  current = (current - 1 + images.length) % images.length;
+  showImage();
+});
+
+/* 自動再生（ここが追加） */
+setInterval(() => {
+  current = (current + 1) % images.length;
+  showImage();
+}, 4000);
+  
 let timer = setInterval(() => {
   current = (current + 1) % images.length;
   img.src = images[current];
