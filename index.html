@@ -110,28 +110,6 @@ body {
   align-items:center;
 }
 
-.carousel img{
-  width:80%;
-  max-width:900px;
-  max-height:500px;
-  object-fit:contain;
-  display:block; 
-  margin: 0 auto;
-}
-
-.carousel button{
-  background:none;
-  border:none;
-  color:#25a8a8;
-  font-size:40px;
-  cursor:pointer;
-}
-  
-#carousel-image {
-  opacity: 0;
-  filter: blur(15px);
-  animation: fadeArtwork 2.5s ease-out forwards;
-}
 
 @keyframes fadeArtwork {
   0% {
@@ -512,36 +490,36 @@ window.addEventListener("DOMContentLoaded", () => {
   const prev = document.querySelector(".prev");
 
   if(!img || !next || !prev) return;
-  
-　img.classList.add("fade");
-  
+
   function showImage() {
 
-  img.classList.remove("fade");
+    img.classList.remove("fade");
 
-  void img.offsetWidth; // 再描画
+    void img.offsetWidth;
 
-  img.src = images[current];
+    img.src = images[current];
 
-  img.classList.add("fade");
-}
+    requestAnimationFrame(() => {
+      img.classList.add("fade");
+    });
+  }
 
-/* 手動 */
-next.addEventListener("click", () => {
-  current = (current + 1) % images.length;
-  showImage();
-});
+  next.addEventListener("click", () => {
+    current = (current + 1) % images.length;
+    showImage();
+  });
 
-prev.addEventListener("click", () => {
-  current = (current - 1 + images.length) % images.length;
-  showImage();
-});
+  prev.addEventListener("click", () => {
+    current = (current - 1 + images.length) % images.length;
+    showImage();
+  });
 
-/* 自動再生（ここが追加） */
-setInterval(() => {
-  current = (current + 1) % images.length;
-  showImage();
-}, 8000);
+  showImage(); // ←これ重要（初期表示）
+
+  setInterval(() => {
+    current = (current + 1) % images.length;
+    showImage();
+  }, 8000);
 });
 
 </script>
