@@ -84,8 +84,7 @@ body {
   color: #ddd;
 }
 
-/* ===== カルーセル（完全安定版） ===== */
-
+/* ===== カルーセル ===== */
 .featured-carousel{
   text-align:center;
   padding:100px 20px;
@@ -106,43 +105,32 @@ body {
   gap:30px;
 }
 
-/* ← ここが超重要：枠を固定する */
 .carousel img{
   width:100%;
   max-width:780px;
-  height:520px;        /* ★これで暴走防止 */
-
-  object-fit:contain;  /* 絵を切らない */
-  background:#0b0b0b;  /* 空白を馴染ませる */
-
+  height:520px;
+  object-fit:contain;
   display:block;
   margin:0 auto;
+  background:#0b0b0b;
 }
 
-/* 初期状態 */
 #carousel-image{
   opacity:0;
-  transform: translateX(40px);
+  transform: translateX(60px);
   filter: blur(12px);
 }
-  
-.carousel img {
-  flex-shrink: 0;
-}
-  
-/* アニメ */
+
 @keyframes museumSlide {
   0% {
     opacity: 0;
     transform: translateX(60px);
     filter: blur(12px);
   }
-
   60% {
     opacity: 0.6;
     filter: blur(5px);
   }
-
   100% {
     opacity: 1;
     transform: translateX(0);
@@ -154,7 +142,6 @@ body {
   animation: museumSlide 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-/* ボタン */
 .carousel button{
   background:none;
   border:none;
@@ -162,34 +149,28 @@ body {
   font-size:32px;
   cursor:pointer;
   opacity:0.6;
-  transition:0.3s;
 }
 
 .carousel button:hover{
   opacity:1;
 }
-  
+
 /* ===== ギャラリー ===== */
 .gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-
-  gap: 100px 80px;   /* 縦 横 の間隔 */
-
+  gap: 100px 80px;
   width: 60%;
   max-width: 1200px;
-
   margin: 120px auto;
 }
 
 .gallery img {
-  width: 65%;       /* マスいっぱいにしない */
+  width: 65%;
   margin: 0 auto;
-
   cursor: pointer;
   display: block;
   object-fit: contain;
-
   transition: all 0.4s ease;
 }
 
@@ -198,32 +179,7 @@ body {
   opacity: 0.9;
 }
 
-.small,
-.medium,
-.large,
-.special {
-  width: 100%;
-  max-width: none;
-}
-  
-/* ===== テキスト ===== */
-.text {
-  text-align: center;
-  margin: 80px 20px;
-}
-
-.text .title {
-  font-size: 40px;
-  margin-bottom: 20px;
-}
-
-.text .desc {
-  font-size: 18px;
-  color: #aaa;
-  line-height: 1.8;
-}
-
-/* ===== 作品ページ（同一HTML内切り替え） ===== */
+/* ===== 作品ページ ===== */
 .work-page {
   display: none;
   text-align: center;
@@ -244,7 +200,7 @@ body {
   cursor: pointer;
 }
 
-/* =====問い合わせ===== */
+/* ===== 問い合わせ ===== */
 .contact {
   background-color: #0b0b0b;
   text-align: center;
@@ -290,41 +246,12 @@ body {
   opacity: 0.8;
 }
 
-  /* ===== 追加：全体中央安定化 ===== */
-.hero,
-.featured-carousel,
-.gallery,
-.text,
-.bio {
-  width: 100%;
-  padding: 0 20px;
-  box-sizing: border-box;
+/* ありがとう画面 */
+#thanks {
+  display:none;
+  text-align:center;
+  padding:80px 20px;
 }
-
-/* 画像のはみ出し防止 */
-img {
-  max-width: 100%;
-}
-
-/* ギャラリーのズレ補正 */
-.gallery {
-  text-align: center;
-}
-
-/* ボタン位置安定 */
-.carousel {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* hero画像のズレ防止 */
-.hero-bg {
-  margin-left: auto;
-  margin-right: auto;
-}
-  
 </style>
 </head>
 
@@ -357,130 +284,65 @@ img {
       1993　黒田賞受賞<br>
       2000　第54回二紀展 文部大臣奨励賞受賞
     </div>
-  </div> 
-  
- <div class="text">
-    <div class="title">「刻」と「風景」の記録</div>
-    <div class="desc">
-      父が遺した油彩と水彩の作品群
+  </div>
+
+  <div class="featured-carousel">
+    <h2>時間と記憶のアーカイブ</h2>
+
+    <div class="carousel">
+      <button class="prev">❮</button>
+      <img id="carousel-image" src="001.jpg">
+      <button class="next">❯</button>
     </div>
- </div>
-  
-<div class="featured-carousel">
-
-  <h2>時間と記憶のアーカイブ</h2>
-
-  <div class="carousel">
-
-    <button class="prev">❮</button>
-
-    <img id="carousel-image" src="001.jpg">
-
-    <button class="next">❯</button>
-
   </div>
 
-</div>
-  
   <div class="gallery">
-
-    <img src="001.jpg" class="large" onclick="openWork(1)">
-    <img src="002.jpg" class="large" onclick="openWork(2)">
-    <img src="003.JPG" class="small" onclick="openWork(3)">
-    <img src="004.JPG" class="small" onclick="openWork(4)">
-    <img src="005.JPG" class="small" onclick="openWork(5)">
-    <img src="006.JPG" class="small" onclick="openWork(6)">
-    <img src="007.JPG" class="small" onclick="openWork(7)">
-    <img src="008.JPG" class="small" onclick="openWork(8)">
-    <img src="009.jpg" class="large" onclick="openWork(9)">
-    <img src="200.JPG" class="small" onclick="openWork(200)">
-
+    <img src="001.jpg" onclick="openWork(1)">
+    <img src="002.jpg" onclick="openWork(2)">
+    <img src="003.JPG" onclick="openWork(3)">
+    <img src="004.JPG" onclick="openWork(4)">
+    <img src="005.JPG" onclick="openWork(5)">
+    <img src="006.JPG" onclick="openWork(6)">
+    <img src="007.JPG" onclick="openWork(7)">
+    <img src="008.JPG" onclick="openWork(8)">
+    <img src="009.jpg" onclick="openWork(9)">
+    <img src="200.JPG" onclick="openWork(200)">
   </div>
 
 </div>
 
-<!-- ===== 作品ページ（001〜005） ===== -->
-
+<!-- ===== 作品ページ ===== -->
 <div id="work1" class="work-page">
   <img src="001.jpg">
   <h2>作品001</h2>
-  <p>制作年：不明<br>油彩</p>
-  <p>作品説明を書く</p>
   <div class="back" onclick="back()">← 戻る</div>
 </div>
 
 <div id="work2" class="work-page">
   <img src="002.jpg">
   <h2>作品002</h2>
-  <p>制作年：不明<br>油彩</p>
-  <p>作品説明を書く</p>
   <div class="back" onclick="back()">← 戻る</div>
 </div>
 
-<div id="work3" class="work-page">
-  <img src="003.JPG">
-  <h2>作品003</h2>
-  <p>制作年：不明<br>油彩</p>
-  <p>作品説明を書く</p>
-  <div class="back" onclick="back()">← 戻る</div>
+<!-- ===== 問い合わせ ===== -->
+<div class="contact">
+
+  <div class="contact-title">Contact</div>
+
+  <form action="mailto:yourmail@example.com" method="post" enctype="text/plain">
+    <input type="text" name="name" placeholder="お名前" required>
+    <input type="email" name="email" placeholder="メールアドレス" required>
+    <textarea name="message" rows="6" placeholder="メッセージ内容" required></textarea>
+    <button type="submit">送信</button>
+  </form>
+
+  <div id="thanks">
+    <h2 style="color:#25a8a8;">送信ありがとうございます</h2>
+    <button onclick="backToForm()">戻る</button>
+  </div>
+
 </div>
 
-<div id="work4" class="work-page">
-  <img src="004.JPG">
-  <h2>作品004</h2>
-  <p>制作年：不明<br>油彩</p>
-  <p>作品説明を書く</p>
-  <div class="back" onclick="back()">← 戻る</div>
-</div>
-
-<div id="work5" class="work-page">
-  <img src="005.JPG">
-  <h2>作品005</h2>
-  <p>制作年：不明<br>油彩</p>
-  <p>作品説明を書く</p>
-  <div class="back" onclick="back()">← 戻る</div>
-</div>
-
-  <div id="work6" class="work-page">
-  <img src="006.JPG">
-  <h2>作品006</h2>
-  <p>制作年：不明<br>油彩</p>
-  <p>作品説明を書く</p>
-  <div class="back" onclick="back()">← 戻る</div>
-</div>
-
-  <div id="work7" class="work-page">
-  <img src="007.JPG">
-  <h2>作品007</h2>
-  <p>制作年：不明<br>油彩</p>
-  <p>作品説明を書く</p>
-  <div class="back" onclick="back()">← 戻る</div>
-</div>
-
-  <div id="work8" class="work-page">
-  <img src="008.JPG">
-  <h2>作品008</h2>
-  <p>制作年：不明<br>油彩</p>
-  <p>作品説明を書く</p>
-  <div class="back" onclick="back()">← 戻る</div>
-</div>
-
-  <div id="work9" class="work-page">
-  <img src="009.jpg">
-  <h2>作品009</h2>
-  <p>制作年：不明<br>油彩</p>
-  <p>作品説明を書く</p>
-  <div class="back" onclick="back()">← 戻る</div>
-</div>
-
-  <div id="work200" class="work-page">
-  <img src="200.JPG">
-  <h2>作品200</h2>
-  <p>制作年：不明<br>油彩</p>
-  <p>作品説明を書く</p>
-  <div class="back" onclick="back()">← 戻る</div>
-</div>
-    
 <script>
 window.addEventListener("DOMContentLoaded", () => {
 
@@ -499,51 +361,70 @@ window.addEventListener("DOMContentLoaded", () => {
   const next = document.querySelector(".next");
   const prev = document.querySelector(".prev");
 
-  if (!img || !next || !prev) return;
+  function showImage(){
+    if(!img) return;
 
-  function showImage() {
     img.classList.remove("fade");
     void img.offsetWidth;
+
     img.src = images[current];
-    requestAnimationFrame(() => {
+
+    requestAnimationFrame(()=>{
       img.classList.add("fade");
     });
   }
 
-  next.addEventListener("click", () => {
-    current = (current + 1) % images.length;
+  if(img && next && prev){
+
+    next.onclick = () => {
+      current = (current + 1) % images.length;
+      showImage();
+    };
+
+    prev.onclick = () => {
+      current = (current - 1 + images.length) % images.length;
+      showImage();
+    };
+
     showImage();
-  });
 
-  prev.addEventListener("click", () => {
-    current = (current - 1 + images.length) % images.length;
-    showImage();
-  });
-
-  showImage();
-
-  setInterval(() => {
-    current = (current + 1) % images.length;
-    showImage();
-  }, 9000);
-
-
-  /* ===== フォーム（ありがとう画面） ===== */
-  const form = document.querySelector(".contact form");
-  const thanks = document.getElementById("thanks");
-
-  if (form && thanks) {
-    form.addEventListener("submit", function(e){
-      e.preventDefault();
-      form.style.display = "none";
-      thanks.style.display = "block";
-    });
+    setInterval(()=>{
+      current = (current + 1) % images.length;
+      showImage();
+    }, 9000);
   }
 
+  /* ===== 作品ページ ===== */
+  window.openWork = function(n){
+    document.getElementById("top").style.display="none";
+    document.getElementById("work"+n).style.display="block";
+  };
+
+  window.back = function(){
+    document.querySelectorAll(".work-page").forEach(p=>p.style.display="none");
+    document.getElementById("top").style.display="block";
+  };
+
+  /* ===== フォーム ===== */
+  const form = document.querySelector("form");
+  const thanks = document.getElementById("thanks");
+
+  form.addEventListener("submit",(e)=>{
+    e.preventDefault();
+    form.style.display="none";
+    thanks.style.display="block";
+  });
+
   window.backToForm = function(){
-    if (!form || !thanks) return;
-    form.style.display = "block";
-    thanks.style.display = "none";
+    form.style.display="block";
+    thanks.style.display="none";
   };
 
 });
+</script>
+
+</body>
+</html>
+「スクロールでフェード演出」
+
+ここまで来てるので、かなりいいとこまで仕上がってる。
